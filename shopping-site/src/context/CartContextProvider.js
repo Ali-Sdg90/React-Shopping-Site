@@ -35,6 +35,38 @@ const cartReducer = (state, action) => {
                 ...state,
                 selectedItems: [...newSelectedItems],
             };
+        case "INCREACE":
+            const indexI = state.selectedItems.findIndex(
+                (item) => item.id === action.payload.id
+            );
+            state.selectedItems[indexI].quantity++;
+            return {
+                ...state,
+            };
+        case "DECREASE":
+            const indexD = state.selectedItems.findIndex(
+                (item) => item.id === action.payload.id
+            );
+            state.selectedItems[indexD].quantity++;
+            return {
+                ...state,
+            };
+        case "CHECKOUT":
+            return {
+                selectedItems: [],
+                itemsCounter: 0,
+                total: 0,
+                checkout: true,
+            };
+        case "CLEAR":
+            return {
+                selectedItems: [],
+                itemsCounter: 0,
+                total: 0,
+                checkout: false,
+            };
+        default:
+            return state;
     }
 };
 
